@@ -16,3 +16,8 @@ gem 'berkshelf'
 
 gem "test-kitchen"
 gem "kitchen-vagrant"
+gem 'thor-scmversion'
+gem 'chefspec'
+gem 'kitchen-gce'
+gem 'rake'
+gem 'rubocop'
