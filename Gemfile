@@ -17,7 +17,7 @@ gem 'berkshelf'
 gem "test-kitchen"
 gem "kitchen-vagrant"
 gem 'thor-scmversion'
-gem 'chefspec', '= 4.1.1'
-gem 'kitchen-gce', '= 0.1.2'
-gem 'rake', '= 10.3.2'
-gem 'rubocop', '= 0.26.1'
+gem 'chefspec'
+gem 'kitchen-gce'
+gem 'rake'
+gem 'rubocop'
