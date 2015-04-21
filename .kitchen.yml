@@ -16,8 +16,8 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[]
+      - recipe[wildfly::default]
     attributes:
     provisioner:
         solo.rb:
-            environment:
+            environment: stack

@@ -8,7 +8,7 @@ execute 'remove_wildfly' do
           command 'rm -rf /opt/wildfly*.tar.gz'
           creates '/tmp/something'
           action :run
-          not_if '{/opt/wildfly/bin/standalone --version | grep -q 'WildFly node['wildfly']['version']'}'
+          not_if { '/opt/wildfly/bin/standalone.sh --version' | grep -q 'WildFly' + node['wildfly']['version'] }
         end
                 
 remote_file '/opt/wildfly-' + node['wildfly']['version'] + '.tar.gz' do
@@ -16,26 +16,24 @@ remote_file '/opt/wildfly-' + node['wildfly']['version'] + '.tar.gz' do
   mode 0744
   owner node['wildfly']['user']
   group node['wildfly']['group']
-  only_if { !File.exists?('/opt/wildfly-' + node['wildfly']['version'] + '.tar.gz')}
+  not_if { File.exists?('/opt/wildfly-' + node['wildfly']['version'] + '.tar.gz')}
 end
 
 execute 'unpack-wildfly' do
   cwd "/opt"
   command "tar -zxf wildfly-" + node['wildfly']['version'] + ".tar.gz"
   action :run
-  not_if { File.exists?('/opt/wildfly') && (/opt/wildfly/bin/standalone --version | grep -q 'WildFly node['wildfly']['version']')}
+  not_if { File.exists?('/opt/wildfly') }
 end
 
 execute 'chown-wildfly' do
   cwd '/opt'
   command 'chown -R wildfly:wildfly /opt/wildfly-' + node['wildfly']['version']
-  not_if { File.exists?('/opt/wildfly') && (/opt/wildfly/bin/standalone --version | grep -q 'WildFly node['wildfly']['version']')}
-  end
+  not_if { File.exists?('/opt/wildfly') }
+end
 
 execute 'rename-directory-remove-version' do
   command 'mv /opt/wildfly-' + node['wildfly']['version'] + ' /opt/wildfly'
-  not_if { File.exists?('/opt/wildfly') && (/opt/wildfly/bin/standalone --version | grep -q 'WildFly node['wildfly']['version']')}
+  not_if { File.exists?('/opt/wildfly') }
   notifies :start, "service[wildfly]", :immediately
 end
-
-
