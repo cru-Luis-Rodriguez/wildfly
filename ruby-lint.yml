@@ -3,8 +3,8 @@ presenter: syntastic
 
 ---
 report_levels:
-  #- warning
-  - error
+  - warning
+  #- error
 
 ---  
 analysis_classes:
