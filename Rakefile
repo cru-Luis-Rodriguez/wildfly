@@ -11,7 +11,7 @@ end
 # The warnings scan will still count and graph [W]arning and [C]op violations.
 desc 'Rubocop linting task'
 task :rubocop do
-  sh 'rubocop --fail-level W'
+  sh 'rubocop --fail-level E'
 end
 
 # touchstone task

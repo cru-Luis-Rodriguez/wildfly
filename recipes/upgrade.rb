@@ -1,6 +1,6 @@
 #upgrade wildfly
 
-version = node'wildfly']['version']
+version = node['wildfly']['version']
 
 execute 'remove_wildfly' do
           notifies :stop, "service[wildfly]", :immediately
