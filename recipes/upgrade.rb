@@ -1,4 +1,3 @@
-#upgrade wildfly
 
 version = node['wildfly']['version']
 
