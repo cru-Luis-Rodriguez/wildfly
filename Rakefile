@@ -4,7 +4,7 @@
 # The warnings scan will still count and graph other violations.
 desc 'Foodcritic correctness linting task'
 task :foodcritic do
-  sh 'foodcritic -f correctness,services,libraries,deprecated -t '~FC001' -t '~FC019' -t '~FC023' -t '~FC002' -t '~FC017' .'
+  sh "foodcritic -f correctness,services,libraries,deprecated -t '~FC001' -t '~FC019' -t '~FC023' -t '~FC002' -t '~FC017' ."
 end
 
 # --fail-level E will only fail Ruby errors.
