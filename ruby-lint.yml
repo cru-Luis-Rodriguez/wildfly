@@ -1,10 +1,12 @@
 ---
 presenter: syntastic
 
+---
 report_levels:
-  -warning
-  -error
-  
+  - warning
+  - error
+
+---  
 analysis_classes:
   - argument_amount
   - pedantics
@@ -15,13 +17,16 @@ analysis_classes:
   #  - unused_variables
   - useless_equality_checks
 
+---
 #directories:
   #- app
   #- lib
 
+---
 #ignore_paths:
   #-/lib/foo/bar
 
+---
 #ignore_paths:
 #  - client
 #  - node_modules
