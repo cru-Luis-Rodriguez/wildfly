@@ -7,7 +7,7 @@ execute 'remove_wildfly' do
           command 'mv /opt/wildfly /opt/old_version'
           command 'rm -rf /opt/wildfly-*.tar.gz'
           action :run
-          not_if { "/opt/wildfly/bin/standalone.sh \-\-version | grep WildFly #{version}" }
+          not_if '/opt/wildfly/bin/standalone.sh \-\-version | grep WildFly #{version}'
         end
                 
 remote_file '/opt/wildfly-' + node['wildfly']['version'] + '.tar.gz' do
