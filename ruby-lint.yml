@@ -8,7 +8,7 @@ report_levels:
 
 ---  
 analysis_classes:
-  - argument_amount
+  #- argument_amount
   - pedantics
   - shadowing_variables
   # Too many false positives for these
