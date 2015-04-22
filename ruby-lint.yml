@@ -3,7 +3,7 @@ presenter: syntastic
 
 ---
 report_levels:
-  - warning
+  #- warning
   - error
 
 ---  
