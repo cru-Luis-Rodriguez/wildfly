@@ -16,7 +16,11 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[wildfly::default]
+      - recipe[apt::default]
+      - recipe[java::default]
+      - recipe[wildfly::test]
+      - recipe[wildfly::upgrade]
+      - role[wildfly]
     attributes:
     provisioner:
         solo.rb:

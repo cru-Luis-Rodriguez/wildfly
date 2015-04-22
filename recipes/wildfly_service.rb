@@ -39,3 +39,4 @@ execute "install wildfly service" do
   notifies :start, "service[wildfly]"
   not_if 'service --status-all | grep -Fq \'wildfly\''
 end
+

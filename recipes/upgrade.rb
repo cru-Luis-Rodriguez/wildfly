@@ -1,14 +1,13 @@
 #upgrade wildfly
 
-include_recipe 'wildfly::wildfly_service'
+version = node['wildfly']['version']
 
 execute 'remove_wildfly' do
           notifies :stop, "service[wildfly]", :immediately
-          command 'mv /opt/wildfly /opt/wildfly_old'
-          command 'rm -rf /opt/wildfly*.tar.gz'
-          creates '/tmp/something'
+          command 'mv /opt/wildfly /opt/old_version ; echo "Ran"'
+          command 'rm -rf /opt/wildfly-*.tar.gz ; echo "Ran"'
           action :run
-          not_if { '/opt/wildfly/bin/standalone.sh --version' | grep -q 'WildFly' + node['wildfly']['version'] }
+          not_if { "/opt/wildfly/bin/standalone.sh \-\-version | grep WildFly #{version}" && File.exists?('/opt/wildfly') }
         end
                 
 remote_file '/opt/wildfly-' + node['wildfly']['version'] + '.tar.gz' do
@@ -35,5 +34,4 @@ end
 execute 'rename-directory-remove-version' do
   command 'mv /opt/wildfly-' + node['wildfly']['version'] + ' /opt/wildfly'
   not_if { File.exists?('/opt/wildfly') }
-  notifies :start, "service[wildfly]", :immediately
 end

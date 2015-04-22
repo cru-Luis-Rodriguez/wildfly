@@ -1,0 +1,40 @@
+{
+
+"name": "wildfly",
+  "description": "wildfly server",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+
+  },
+  "override_attributes": {
+    "wildfly": {
+      "version": "8.2.0.Final",
+      "user": "wildfly",
+      "group": "wildfly",
+      "service_name": "wildfly",
+      "port": 8080,
+      "secure_port": 8443,
+      "ajp_port": 8009,
+      "shutdown_port": 8005,
+      "uri_encoding": "UTF-8",
+      "deploy_username": "test",
+      "deploy_password": "test12345",
+      "console_log_level": "ERROR"
+    },
+     "java": {
+        "install_flavor": "oracle",
+        "jdk_version": "7",
+        "oracle": {
+           "accept_oracle_download_terms": "true"
+          }
+      }
+  },
+  "chef_type": "role",
+  "run_list": [ ],
+  "env_run_lists": {
+    "stack": [
+      "recipe[wildfly::default]"
+    ]
+  }
+}
+
