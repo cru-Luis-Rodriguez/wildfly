@@ -4,10 +4,10 @@ version = node['wildfly']['version']
 
 execute 'remove_wildfly' do
           notifies :stop, "service[wildfly]", :immediately
-          command 'mv /opt/wildfly /opt/old_version ; echo "Ran"'
-          command 'rm -rf /opt/wildfly-*.tar.gz ; echo "Ran"'
+          command 'mv /opt/wildfly /opt/old_version'
+          command 'rm -rf /opt/wildfly-*.tar.gz'
           action :run
-          not_if { "/opt/wildfly/bin/standalone.sh \-\-version | grep WildFly #{version}" && File.exists?('/opt/wildfly') }
+          not_if { "/opt/wildfly/bin/standalone.sh \-\-version | grep WildFly #{version}" }
         end
                 
 remote_file '/opt/wildfly-' + node['wildfly']['version'] + '.tar.gz' do
