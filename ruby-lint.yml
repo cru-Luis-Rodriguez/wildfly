@@ -2,7 +2,7 @@
 presenter: syntastic
 
 ---
-report_levels: info
+report_levels: error
   # - warning
   # - error
 
